@@ -1,0 +1,51 @@
+<h1>Tree with Ember Data</h1>
+
+It is possible to render a tree from ember data models as long as your model has:
+<p>
+<ul>
+<li><i>children</i> property defined as an <i>hasMany</i> relationship to be rendered as the children of the tree node</li>
+<li><i>title</i> property defined a string to be the node's title</li>
+</ul>
+</p>
+
+<p>
+Please note that for every visibile node its children will be loaded from the server even if the node is not opened,
+This is because <i>get('children')</i> is invoked for every node on the tree in order to render its icon appropriately.
+If you want a more sophisiticated solution with async support with more control of how children are loaded then look at the {{#link-to 'async'}}Async Tree{{/link-to}} approach.
+</p>
+
+<h2>Demo</h2>
+{{em-tree model=model selected=current}}
+Selected: {{current}}
+
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model}}</code></pre>
+</div>
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="coffeescript">#in reality replaced with a real adapter 
+App.Tag.FIXTURES = [
+    {id: 1, title: 'Family', parent: 0, children: [10, 11]}
+    {id: 10, title: 'Susan', parent: [1], children: [100, 101]}
+    {id: 11, title: 'Luda', parent: [1], children: [102, 103]}
+    {id: 100, title: 'Josh', parent: [10], children: []}
+    {id: 101, title: 'Moses', parent: [10], children: []}
+    {id: 102, title: 'Verdi', parent: [11], children: []}
+    {id: 103, title: 'Gaya', parent: [11], children: []}
+]
+
+App.Tag = DS.Model.extend
+    title: DS.attr 'string'
+    children: DS.hasMany('tag', {async: true})
+    parent: DS.belongsTo('tag', {async: true})
+
+App.ComponentTreeEmberdataRoute = Em.Route.extend
+    model: ->
+        @store.find('tag', 1)
+</code></pre>
+</div>
+
+{{em-tree-branch node=model}}

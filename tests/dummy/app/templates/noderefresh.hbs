@@ -1,0 +1,56 @@
+<h1>Async Tree</h1>
+
+<p>
+It is possible to request child refresh for a tree node
+<p>
+
+<h2>Demo</h2>
+{{em-tree model=model async=true selected=selected}}
+
+{{#if selected}}
+<button {{action 'addAndRefresh'}}>Add child to selected node and refresh</button>
+{{/if}}
+
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model async=true icons-per-type=iconSet}}</code></pre>
+</div>
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="javascript">Em.ObjectController.extend({
+  words: ['Foo', 'Bar', 'Baz', 'Qux'],
+  randomWord: function() {
+    return this.words[Math.floor(Math.random() * this.words.length)];
+  },
+  actions: {
+    addAndRefresh: function() {
+      return this.get('selected').createChild({
+        title: this.randomWord()
+      });
+    },
+    getChildren: function(node, c) {
+      return Em.run.later(this, function() {
+        var i, o, _results;
+        c.set('loading', false);
+        o = Math.floor(Math.random() * this.words.length) + 1;
+        if (node.get('level') < 4) {
+          i = 0;
+          _results = [];
+          while (i < o) {
+            node.createChild({
+              title: this.randomWord()
+            });
+            _results.push(i++);
+          }
+          return _results;
+        } else {
+          return node.emptyChildren();
+        }
+      }, 500);
+    }
+  }
+});
+</code></pre>
+</div>

@@ -1,0 +1,29 @@
+<h1>Tree with Multi Selection</h1>
+
+<p>
+The default selection (when clicking on the Tree's title) is one node selection only,
+
+Tree supports multi selection by setting the <i>multi-selection</i> property on the \{{em-tree}} tag to true, this mode will render a checkbox near every node in the tree, letting the user select or de-select every node.
+</p>
+
+<h2>Demo</h2>
+<p>
+{{em-tree model=model selected=current expand-depth=expandDepth in-multi-selection=true multi-selection=multi}}
+</p>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model selected=current expand-depth=expandDepth}}
+</code></pre>
+</div>
+
+Total #{{multi.length}} selected items: {{multiNames}}
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="coffeescript">Ember.Controller.extend
+    expandDepth: 0
+    actions:
+        anotherLevel: ->
+            @set 'expandDepth', @get('expandDepth')+1
+</code></pre>
+</div>
