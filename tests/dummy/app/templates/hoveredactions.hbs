@@ -1,0 +1,52 @@
+<h1>Hovered Icon Actions</h1>
+
+<p>
+<i>Hovered Icon Actions</i> are small icons rendered on the right side of each node when the node is hovered with the mouse, when an icon is clicked, an action on the controller is triggered.
+</p>
+
+<p>
+    <ul>
+        <li>To define actions, pass an array of actions metadata to the <i>\{{em-tree}}</i> component as <i>hovered-actions</i> property.</li>
+        <li>It is possible to define a different actions per node type by the 'types' array of each <i>actionsMeta</i> entry</li>
+        <li>Actions can be sticky if the action's metadata <i>sticky</i> property is set to <i>true</i>, a sticky action won't disappear when the node is not hovered.</li>
+    </ul>
+</p>
+<h2>Demo</h2>
+{{em-tree model=model hovered-actions=actionsMeta}}
+
+Message from action: {{message}}
+
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model hovered-actions=actionsMeta}}</code></pre>
+</div>
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="coffeescript">Ember.ObjectController.extend
+    message: undefined
+    actionsMeta: [
+        {classes: ['fa fa-eye'], action: 'eye', types: ['male']}
+        {classes: ['fa fa-edit'], action: 'edit', types: ['female']}
+        {classes: ['fa fa-trash-o'], action: 'delete'}
+    ]
+    init: ->
+        #TODO: Import EC instead
+        family = Em.EC.TreeNode.create({title: 'Family'}, nodeType: ['family'])
+        #1st level
+        suz = family.createChild {title: 'Susan', nodeType: 'male'}
+        lud = family.createChild {title: 'Luda', nodeType: 'female'}
+
+        @set 'model', family
+
+    actions: 
+        edit: (actionView) ->
+            @set 'message', "Editing #{actionView.get('model.title')}"
+        delete: (actionView) ->
+            @set 'message', "Deleting #{actionView.get('model.title')}"
+        eye: (actionView) ->
+            @set 'message', "Looking at #{actionView.get('model.title')}"
+            actionView.toggleProperty 'sticky'
+</code></pre>
+</div>

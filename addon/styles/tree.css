@@ -1,0 +1,24 @@
+.em-tree-node {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.em-tree-node-active {
+    background: #e7e7e7;
+}
+
+li.em-tree-node > span {
+    cursor: pointer;
+}
+
+li.em-tree-node > span > span.actions {
+    visibility: hidden;
+}
+
+li.em-tree-node > span:hover > span.actions {
+    visibility: visible;
+}

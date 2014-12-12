@@ -1,0 +1,23 @@
+<h1>Expanded Tree</h1>
+It is possible to auto expand the tree by using the <i>expand-depth</i> property on the \{{em-tree}} tag, the value of the property should be the max depth level to expand
+
+<h2>Demo</h2>
+<p>
+{{em-tree model=model selected=current expand-depth=expandDepth}}
+<button {{action 'anotherLevel'}}>Expand Level {{controller.expandDepth}}</button>
+</p>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model selected=current expand-depth=expandDepth}}
+</code></pre>
+</div>
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="coffeescript">Ember.Controller.extend
+    expandDepth: 0
+    actions:
+        anotherLevel: ->
+            @set 'expandDepth', @get('expandDepth')+1
+</code></pre>
+</div>

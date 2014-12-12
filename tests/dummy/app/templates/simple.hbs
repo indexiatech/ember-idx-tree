@@ -1,0 +1,70 @@
+<h1>Simple Tree</h1>
+
+<p>
+The simplest form of the tree component is to build a tree of nodes ahead and assign the root node to the <i>\{{em-tree}}</i> tag.
+</p>
+
+<p>
+<ol>
+    <li>The model must have a <i>children<i/> property that is an array of the children models.</li>
+    <li>The <i>selected</i> property will be bound to the selected node in the tree.</li>
+</ol>
+</p>
+
+<h2>Demo</h2>
+{{em-tree model=model selected=selected}}
+
+{{#if selected}}
+Selected node is: {{selected.title}}
+<button {{action 'expand'}}>toggle expand</button>
+{{else}}
+Select a node by clicking on it
+{{/if}}
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model selected=selected}}
+&lt;button \{{action 'expand'}}&gt;toggle expand&lt;/button&gt;
+</code></pre>
+</div>
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="coffeescript">import Em from "ember";
+import TreeNode from 'ember-idx-tree/node'
+
+export default Em.ObjectController.extend({
+  init: function() {
+    var family, gaya, josh, lud, moses, suz, verdi;
+    family = TreeNode.create({
+      title: 'Family'
+    });
+    suz = family.createChild({
+      title: 'Susan'
+    });
+    lud = family.createChild({
+      title: 'Luda'
+    });
+    josh = suz.createChild({
+      title: 'Josh'
+    });
+    moses = suz.createChild({
+      title: 'Moses'
+    });
+    verdi = lud.createChild({
+      title: 'Verdi'
+    });
+    gaya = lud.createChild({
+      title: 'Gaya'
+    });
+    return this.set('model', family);
+  },
+  actions: {
+    expand: function() {
+      this.get('selected').toggleProperty('expanded');
+      return null;
+    }
+  }
+});
+</code></pre>
+</div>

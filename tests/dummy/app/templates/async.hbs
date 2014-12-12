@@ -1,0 +1,49 @@
+<h1>Async Tree</h1>
+
+<p>
+This is the most custom form of loading tree children, it only requires the root node to be built ahead,
+Expanding a node by clicking it causes an action to be triggered on the controller, expecting the action to build or load the expanded node's children, the tree node will expands with the given children.
+<p>
+
+<p>
+The data then is cached, that means if the user close the node after openning it and then re-open the node, the data will <i>not</i> be re-loaded asynchronously.
+</p>
+
+<h2>Demo</h2>
+{{em-tree model=model async=true icons-per-type=iconSet expand-depth=expandDepth}}
+
+<h2>Markup</h2>
+
+<div class="well line-example">
+<pre><code class="handlebars">\{{em-tree model=model async=true icons-per-type=iconSet expand-depth=expandDepth}}</code></pre>
+</div>
+
+<h2>Code</h2>
+<div class="well line-example">
+<pre><code class="coffeescript">App.ComponentTreeAsyncController = Em.ObjectController.extend
+    words: ['Foo', 'Bar', 'Baz', 'Qux']
+    expandDepth: 1
+
+    randomWord: ->
+        @words[Math.floor(Math.random()*@words.length)]
+
+    actions:
+        #This method is invoked by the tree, expecting the children to get back
+        getChildren: (node, tree) ->
+            Em.run.later(@, ->
+                #Let the tree know we finished loading the data
+                tree.set 'loading', false
+                #In reality the data would be loaded from a server via a direct ajax request or using ember-data
+                o = Math.floor(Math.random()*@words.length)+1
+                if node.get('level') < 4
+                    i = 0
+                    while i < o
+                        #This is the way to add new children to the expanded node
+                        node.createChild(title: @randomWord())
+                        i++
+                else
+                    #Call emptyChildren() if there's no children at all to render an appropriate icon
+                    node.emptyChildren()
+            , 500)
+</code></pre>
+</div>
