@@ -1,8 +1,18 @@
 # Ember-idx-tree
 
+Ember Idx Tree is a sophisticated tree component for Ember.js,
+
 This README outlines the details of collaborating on this Ember addon.
 
-## Installation
+## Installation & Tutorial
+
+### With Ember-CLI:
+
+npm install --save-dev ember-idx-tree
+
+Please visit the documentation for installation & usage documentations: http://indexiatech.github.io/ember-idx-tree
+
+## Plugin Development
 
 * `git clone` this repository
 * `npm install`
@@ -21,5 +31,3 @@ This README outlines the details of collaborating on this Ember addon.
 ## Building
 
 * `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
