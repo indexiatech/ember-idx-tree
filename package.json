@@ -46,7 +46,6 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "readme": "# Ember-idx-tree\n\nEmber Idx Tree is a sophisticated tree component for Ember.js,\n\nThis README outlines the details of collaborating on this Ember addon.\n\n## Installation & Tutorial\n\n### With Ember-CLI:\n\nnpm install --save-dev ember-idx-tree\n\nPlease visit the documentation for installation & usage documentations: http://indexiatech.github.io/ember-idx-tree\n\n## Plugin Development\n\n* `git clone` this repository\n* `npm install`\n* `bower install`\n\n## Running\n\n* `ember server`\n* Visit your app at http://localhost:4200.\n\n## Running Tests\n\n* `ember test`\n* `ember test --server`\n\n## Building\n\n* `ember build`",
   "readmeFilename": "README.md",
   "_id": "ember-idx-tree@0.1.0",
   "_from": "ember-idx-tree@*"
