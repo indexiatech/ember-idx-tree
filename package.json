@@ -10,11 +10,10 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/indexiatech/ember-idx-tree",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
   "license": "ASF2",
   "devDependencies": {
     "broccoli-asset-rev": "^1.0.0",
