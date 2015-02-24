@@ -1,12 +1,10 @@
 import Em from 'ember';
-import Config from 'ember-idx-utils/config'
+import IdxConfig from 'ember-idx-utils/config'
 
 export default {
   name: 'ember-idx-tree',
   initialize: function() {
-    if (!Em.Config) {
-        Em.Config = Config = Config.create()
-    }
+    var Config = Em.IdxConfig = Em.IdxConfig ? Em.IdxConfig : IdxConfig.create();
 
     var defaultConfig = Config.getConfig('default');
     if (!defaultConfig) {

@@ -1,6 +1,9 @@
 {
   "name": "ember-idx-tree",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "readmeFilename": "README.md",
+  "_id": "ember-idx-tree@0.1.1",
+  "_from": "ember-idx-tree@*",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -16,7 +19,7 @@
   },
   "license": "ASF2",
   "dependencies": {
-    "ember-idx-utils": "^0.2.0"
+    "ember-idx-utils": "^0.2.2"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^1.0.0",
@@ -44,8 +47,5 @@
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "readmeFilename": "README.md",
-  "_id": "ember-idx-tree@0.1.0",
-  "_from": "ember-idx-tree@*"
+  }
 }
