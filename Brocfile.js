@@ -27,9 +27,9 @@ app.import('bower_components/highlightjs/highlight.pack.js');
 app.import('bower_components/highlightjs/styles/tomorrow.css');
 
 var extraAssets = pickFiles( 'bower_components/fontawesome/fonts', {
-    srcDir  : '/',
-    files   : [ 'fontawesome-webfont.woff' ],
-    destDir : '/fonts'
+  srcDir  : '/',
+  files   : [ 'fontawesome-webfont.woff' ],
+  destDir : '/fonts'
 });
 
 module.exports = mergeTrees([app.toTree(), extraAssets]);
