@@ -20,8 +20,8 @@
 {{model.title}}
 {{#if tree.hovered-actions}}
     <span class="actions">
-    {{#each hoveredActions}}
-        {{em-tree-node-icon-action meta=this model=controller.model}}</i>
+    {{#each act in hoveredActions}}
+        <i>{{em-tree-node-icon-action meta=act model=controller.model}}</i>
     {{/each}}
     </span>
 {{/if}}
