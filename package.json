@@ -16,6 +16,7 @@
   },
   "license": "ASF2",
   "dependencies": {
+    "ember-cli-babel": "^6.7.1",
     "ember-idx-utils": "^0.2.0"
   },
   "devDependencies": {
